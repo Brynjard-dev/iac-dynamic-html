@@ -1,0 +1,7 @@
+*.tfstate
+*.tfstate.backup
+.terraform/
+*.tfplan
+terraform/lambda/handler.zip
+venv/
+__pycache__/
