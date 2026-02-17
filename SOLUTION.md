@@ -1,5 +1,3 @@
-# Solution
-
 ## What it does
 
 A serverless service on AWS that serves a simple HTML page. The page displays a dynamic string that can be changed on the fly without touching the infrastructure or redeploying anything.
@@ -31,7 +29,7 @@ Everything is provisioned with Terraform.
 |--------|---------|
 | SSM Parameter Store | Went with this. Free, simple, purpose-built for config values. No schema or table to set up. |
 | DynamoDB | Would work fine but feels like overkill for storing a single string. You'd need to define a table, pick a partition key, etc. |
-| S3 | Technically possible -- store a text file and read it. But S3 is designed for files, not config values. Latency is slightly worse too. |
+| S3 | Technically possible - store a text file and read it. But S3 is designed for files, not config values. Latency is slightly worse too. |
 
 ### How to expose the endpoint
 
@@ -41,10 +39,6 @@ Everything is provisioned with Terraform.
 | API Gateway REST API | More features (request validation, caching, usage plans) but none of that is needed here. More Terraform to write for no benefit. |
 | Lambda Function URL | The simplest option, but it doesn't support routing. I'd need to handle both GET and PUT on the same path, which is a bit awkward. |
 | ALB + ECS/Fargate | Way too heavy for serving a single HTML page. Costs more, takes longer to provision, more moving parts. |
-
-### IaC tool
-
-Terraform was specified in the brief, but for context: CloudFormation or SAM would also work. I'd still pick Terraform -- it's cloud-agnostic, has a cleaner syntax, and `terraform plan` gives you a nice preview of what's about to change.
 
 ## Key decisions worth calling out
 
